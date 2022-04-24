@@ -1,26 +1,27 @@
 import { useState } from "react";
-
-import TopBar from "./components/topbar/TopBar"
-import Intro from "./components/intro/Intro"
-import Intro2 from "./components/intro2/Intro2"
-import Intro3 from "./components/intro3/Intro3"
-import Intro4 from "./components/intro4/Intro4"
-import Menu from "./components/menu/Menu";
-
 import "./app.scss"
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [slideNumber,setSlideNumber]=useState(0)
+
+  const moveSlide=(dir)=>{
+    if(dir==='l'){
+      setSlideNumber(slideNumber !==0 ? slideNumber-1 : 2)
+    }
+    if(dir==='r'){
+      setSlideNumber(slideNumber !==2 ? slideNumber+1 : 0)
+    }
+  }
+
   return (
-    <div className="app">
-      <TopBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />  
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>    
-      <div className="section">
-        <Intro />
-        <Intro2 />
-        <Intro3 />
-        <Intro4 />
-      </div>
+    <div className="container">
+        <div className="arrow" style={{left:'0'}} onClick={()=>moveSlide('l')}>left</div>
+        <div className="wrapper" style={{transform:`translateX(${-100*slideNumber}vw)`}}>
+          <div className="slider" style={{background:'red'}}>one</div>
+          <div className="slider" style={{background:'yellow'}}>two</div>
+          <div className="slider" style={{background:'green'}}>three</div>
+        </div>
+        <div className="arrow" style={{right:'0'}} onClick={()=>moveSlide('r')}>right</div>
     </div>
   );
 }

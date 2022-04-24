@@ -1,23 +1,37 @@
-.app{
+.container {
     height: 100vh;
+    width: 100%;
+    overflow: hidden;
 
-    .section{
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: lightsalmon;
-        position: relative;
-        top: 70px;
-        scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
-        scrollbar-width: none; //for firefox
-        &::-webkit-scrollbar{
-            display: none;
-        }
+    .arrow {
+        position: absolute;
+        width: 10%;
+        height: 10%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: black;
+        cursor: pointer;
+        z-index: 3;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        > *{
+    .wrapper {
+        width: 300vw;
+        height: 100%;
+        display: flex;
+        transition: all 1s ease-in-out;
+
+        .slider {
             width: 100vw;
-            height: calc(100vh - 70px);
-            scroll-snap-align: start;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
         }
     }
 }
